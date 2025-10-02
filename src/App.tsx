@@ -33,9 +33,7 @@ function App() {
 
     layout: 'PrevPageLink PageLinks NextPageLink CurrentPageReport',
     PrevPageLink: () => {
-
-      const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        //console.log("Previous page clicked");
+      const handleClick = () => {
         handlePageChange({ page: currentPage - 2 });
       };
       return (
@@ -46,8 +44,7 @@ function App() {
     },
     NextPageLink: () => {
       
-      const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        // console.log("Next page clicked");
+      const handleClick = () => {
         handlePageChange({ page: currentPage });
       };
       return (
@@ -57,10 +54,8 @@ function App() {
       );
     },
     PageLinks: (options: any) => {
-
       if ((options.view.startPage === options.page && options.view.startPage !== 0) || (options.view.endPage === options.page && options.page + 1 !== options.totalPages)) {
         const className = `${options.className} p-disabled`;
-        // console.log(options);
         return (
           <span className={className} style={{ userSelect: 'none' }}>
             ...
