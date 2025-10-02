@@ -148,9 +148,7 @@ function App() {
     <>
       <div className='container mx-auto p-12'>
         <h1 className='my-4'>Table with Pagination</h1>
-
         <div className="card flex gap-4 justify-content-center">
-          <Button type="button" className='button-sm' icon="pi pi-check" onClick={(e) => op.current.toggle(e)} />
           <OverlayPanel ref={op}>
             <form onSubmit={handleSelection} className="flex gap-1 justify-content-center">
               <input type="text" placeholder='Select rows...' className='bg-white border border-black px-4 py-1 rounded-md' name='select' />
@@ -176,7 +174,13 @@ function App() {
           currentPageReportTemplate={`Showing ${currentPage} of ${totalPage} pages`}
         >
           <Column selectionMode="multiple" style={{ width: '5%' }}></Column>
-          <Column field="title" header="Title" style={{ width: '15%' }}></Column>
+          <Column header={
+    <div className="flex items-center gap-2">
+      
+      <Button type="button" className='button-sm' icon="pi pi-check" onClick={(e) => op.current.toggle(e)} />
+        <span>Title</span>
+    </div>
+  } field="title" style={{ width: '15%' }}></Column>
           <Column field="place_of_origin" header="Place of Origin" style={{ width: '15%' }}></Column>
           <Column field="artist_display" header="Artist" style={{ width: '15%' }}></Column>
           <Column field="inscription" header="Inscription" style={{ width: '20%' }}></Column>
