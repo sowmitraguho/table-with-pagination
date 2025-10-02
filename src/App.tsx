@@ -32,7 +32,7 @@ function App() {
     PrevPageLink: (options: any) => {
       
       const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Previous page clicked");
+        //console.log("Previous page clicked");
         handlePageChange({ page: currentPage - 2 });
       };
       return (
@@ -44,7 +44,7 @@ function App() {
     NextPageLink: (options: any) => {
       //console.log(options);
       const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Next page clicked");
+       // console.log("Next page clicked");
         handlePageChange({ page: currentPage });
       };
       return (
@@ -57,7 +57,7 @@ function App() {
 
       if ((options.view.startPage === options.page && options.view.startPage !== 0) || (options.view.endPage === options.page && options.page + 1 !== options.totalPages)) {
         const className = `${options.className} p-disabled`;
-        console.log(options);
+       // console.log(options);
         return (
           <span className={className} style={{ userSelect: 'none' }}>
             ...
@@ -74,11 +74,6 @@ function App() {
   }
 
 
-
-
-
-
-
   const handlePageChange = (event: { first: number; rows: number; page: number; pageCount: number }) => {
     setLoading(true);
     axios.get(`https://api.artic.edu/api/v1/artworks?page=${event.page + 1}`)
@@ -90,8 +85,6 @@ function App() {
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }
-
-
 
 
   useEffect(() => {
