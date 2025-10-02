@@ -34,7 +34,7 @@ function App() {
     layout: 'PrevPageLink PageLinks NextPageLink CurrentPageReport',
     PrevPageLink: () => {
       const handleClick = () => {
-        handlePageChange({ page: currentPage - 2 });
+        handlePageChange(currentPage - 2);
       };
       return (
         <button type="button" className='p-paginator-prev p-paginator-element p-link' onClick={handleClick} disabled={currentPage === 1}>
@@ -44,7 +44,7 @@ function App() {
     },
     NextPageLink: () => {
       const handleClick = () => {
-        handlePageChange({ page: currentPage });
+        handlePageChange(currentPage );
       };
       return (
         <button type="button" className={'p-paginator-next p-paginator-element p-link'} onClick={handleClick} disabled={currentPage===totalPage}>
@@ -65,7 +65,7 @@ function App() {
         <button
           type="button"
           className={options.className}
-          onClick={() => handlePageChange({ page: options.page })}>
+          onClick={() => handlePageChange(options.page )}>
           {options.page + 1}
         </button>
 
@@ -74,13 +74,13 @@ function App() {
   }
 
 
-  const handlePageChange = (event: { page: number; }) => {
+  const handlePageChange =  ( page: number ) => {
     setLoading(true);
-    axios.get(`https://api.artic.edu/api/v1/artworks?page=${event.page + 1}`)
+    axios.get(`https://api.artic.edu/api/v1/artworks?page=${page + 1}`)
       .then(res => {
         setTotalRecords(res.data.pagination.total);
         setProducts(res.data.data);
-        setCurrentPage(event.page + 1);
+        setCurrentPage(page? page + 1 : 1);
 
       })
       .catch(err => console.error(err))
@@ -162,7 +162,7 @@ function App() {
           lazy
           totalRecords={totalRecords}
           rows={12}
-          onPage={(e) => { handlePageChange(e) }}
+         onPage={(e) => { handlePageChange(e.page ?? 0) }}
           paginatorTemplate={template}
           currentPageReportTemplate={`Showing ${currentPage} of ${totalPage} pages`}
         >
