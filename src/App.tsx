@@ -26,7 +26,7 @@ function App() {
   const [totalRecords, setTotalRecords] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(0);
-  const op = useRef(null);
+  const op = useRef<OverlayPanel>(null);
 
 
   const template = {
@@ -43,7 +43,6 @@ function App() {
       );
     },
     NextPageLink: () => {
-      
       const handleClick = () => {
         handlePageChange({ page: currentPage });
       };
@@ -62,7 +61,6 @@ function App() {
           </span>
         );
       }
-
       return (
         <button
           type="button"
@@ -147,7 +145,7 @@ function App() {
           <OverlayPanel ref={op}>
             <form onSubmit={handleSelection} className="flex gap-1 justify-content-center">
               <input type="text" placeholder='Select rows...' className='bg-white border border-black px-4 py-1 rounded-md' name='select' />
-              <button onClick={(e) => op.current.toggle(e)} type="submit">Submit</button>
+              <button onClick={(e) => op.current?.toggle(e)} type="submit">Submit</button>
             </form>
           </OverlayPanel>
         </div>
@@ -172,7 +170,7 @@ function App() {
           <Column header={
     <div className="flex items-center gap-2">
       
-      <Button type="button" className='button-sm' icon="pi pi-check" onClick={(e) => op.current.toggle(e)} />
+      <Button type="button" className='button-sm' icon="pi pi-check" onClick={(e) => op.current?.toggle(e)} />
         <span>Title</span>
     </div>
   } field="title" style={{ width: '15%' }}></Column>
