@@ -32,7 +32,7 @@ function App() {
   const template = {
 
     layout: 'PrevPageLink PageLinks NextPageLink CurrentPageReport',
-    PrevPageLink: (options: any) => {
+    PrevPageLink: () => {
 
       const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         //console.log("Previous page clicked");
@@ -44,14 +44,14 @@ function App() {
         </button>
       );
     },
-    NextPageLink: (options: any) => {
-      //console.log(options);
+    NextPageLink: () => {
+      
       const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         // console.log("Next page clicked");
         handlePageChange({ page: currentPage });
       };
       return (
-        <button type="button" className={options.className} onClick={handleClick} disabled={options.disabled}>
+        <button type="button" className={'p-paginator-next p-paginator-element p-link'} onClick={handleClick} disabled={currentPage===totalPage}>
           <span className="mx-1">Next</span>
         </button>
       );
